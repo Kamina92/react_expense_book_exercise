@@ -10,15 +10,17 @@ function Expenses (props) {
 
     const [selectedDate, setSelectedDate] = useState('2022');
 
-    const expenses = props.items;
-
-    let expenses_items = [];
-      
-    expenses.forEach(expense => {
-      
-      expenses_items.push(<ExpenseItem key={expense.id} title={expense.title} amount={expense.amount} date={expense.date} />);
-          
+    const filteredExpenses = props.items.filter(expense=>{
+      return expense.date.getFullYear()==selectedDate;
     });
+
+    // let expenses_items = [];
+      
+    // expenses.forEach(expense => {
+      
+    //   expenses_items.push(<ExpenseItem key={expense.id} title={expense.title} amount={expense.amount} date={expense.date} />);
+          
+    // });
 
     const getSelectedDate = (date) => {
       // console.log('This is Expense.js');
@@ -33,7 +35,9 @@ function Expenses (props) {
         <div>
           <ExpensesFilter selectedDate={selectedDate} onSelectedDate={getSelectedDate} />
         </div>
-            {expenses_items}
+            {filteredExpenses.map(expense=>{
+              return <ExpenseItem key={expense.id} title={expense.title} amount={expense.amount} date={expense.date} />;
+            })}
         </Card>
       </div>
     );
