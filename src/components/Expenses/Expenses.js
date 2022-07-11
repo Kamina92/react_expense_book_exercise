@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 
 import ExpensesFilter from './ExpensesFilter';
 import ExpensesList from './ExpensesList';
+import ExpensesChart from './ExpensesChart';
 import Card from '../UI/Card';
 
 import './Expenses.css'
@@ -42,6 +43,7 @@ function Expenses (props) {
         <Card className="expenses">
         <div>
           <ExpensesFilter selectedDate={selectedDate} onSelectedDate={getSelectedDate} />
+          <ExpensesChart expenses={filteredExpenses} />
         </div>
             <ExpensesList items = {filteredExpenses} />
         </Card>
